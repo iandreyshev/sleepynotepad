@@ -1,0 +1,78 @@
+package ru.iandreyshev.featureDreams.useCase.impl
+
+import io.reactivex.Single
+import ru.iandreyshev.featureDreams.storage.IDreamsStorage
+import ru.iandreyshev.featureDreams.useCase.ISaveDreamUseCase
+import ru.iandreyshev.featureDreamsApi.domain.DreamProperties
+import ru.iandreyshev.featureDreams.domain.SaveDreamResult
+import ru.iandreyshev.featureDreamsApi.domain.DreamKey
+import javax.inject.Inject
+
+class SaveDreamUseCase
+@Inject constructor(
+        private val storage: IDreamsStorage
+) : ISaveDreamUseCase {
+
+    override fun invoke(properties: DreamProperties, key: DreamKey?): Single<SaveDreamResult> = Single.create {
+        val dream = properties.clear()
+
+        dream.getPropertiesError()?.run {
+            it.onSuccess(this)
+            return@create
+        }
+
+        val result = if (key == null) {
+            save(dream)
+        } else {
+            edit(dream, key)
+        }
+
+        it.onSuccess(result)
+    }
+
+    private fun save(dreamProperties: DreamProperties): SaveDreamResult {
+//        val user = userApi.user ?: return SaveDreamResult.ERROR_UNDEFINED
+//        val request = dreamProperties.toRequest(user)
+//        val response = serverApi.save(request)
+//        val resultFromServer = response.result ?: run {
+//            return response.error.toResult()
+//        }
+//
+//        val entity = dreamProperties.toEntity(resultFromServer)
+//        storage.save(entity)
+//
+//        return SaveDreamResult.SUCCESS
+        return TODO()
+    }
+
+    private fun edit(dreamProperties: DreamProperties, key: DreamKey): SaveDreamResult {
+//        val user = userApi.user ?: return SaveDreamResult.ERROR_UNDEFINED
+//        val request = dreamProperties.toRequest(key, user)
+//        val response = serverApi.edit(request)
+//
+//        if (response != EditResponse.SUCCESS) {
+//            return response.toResult()
+//        }
+//
+//        val entity = dreamProperties.toEntity(key)
+//        storage.save(entity)
+//
+//        return SaveDreamResult.SUCCESS
+        return TODO()
+    }
+
+    private fun DreamProperties.getPropertiesError(): SaveDreamResult? = when {
+        description.isEmpty() -> SaveDreamResult.ERROR_EMPTY_DREAM
+        description.isBlank() -> SaveDreamResult.ERROR_BLANK_DREAM
+        description.length > MAX_DREAM_DESCRIPTION_LENGTH -> SaveDreamResult.ERROR_LARGE_DREAM
+        else -> null
+    }
+
+    private fun DreamProperties.clear(): DreamProperties =
+            copy(description = description.trim())
+
+    companion object {
+        private const val MAX_DREAM_DESCRIPTION_LENGTH = 100
+    }
+
+}
