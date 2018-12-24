@@ -1,1 +1,1 @@
-include ':app', ':core_utils', ':core_ui', ':core_database', ':feature_dreams_api', ':feature_dreams_impl', 'feature_menu_api', 'feature_menu_impl'
+include ':app', ':core_utils', ':core_ui', ':core_database', ':feature_dreams_api', ':feature_dreams_impl', ':feature_alarm_api', ':feature_alarm_impl', ':feature_settings_api', ':feature_settings_impl', 'feature_menu_api', 'feature_menu_impl'

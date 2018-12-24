@@ -11,7 +11,7 @@ import ru.iandreyshev.coreui.ui.dialog.customizeAndShow
 import ru.iandreyshev.coreui.viewModel.observeNotNull
 import ru.iandreyshev.featureDreams.R
 import ru.iandreyshev.featureDreams.di.FeatureDreamsComponent
-import ru.iandreyshev.featureDreams.domain.SaveDreamResult
+import ru.iandreyshev.featureDreams.domain.SaveResult
 import ru.iandreyshev.featureDreamsApi.domain.DreamProperties
 import ru.iandreyshev.featureDreams.viewModel.DreamEditorViewModel
 import ru.iandreyshev.featureDreams.viewModel.IViewModelFactory
@@ -73,20 +73,20 @@ class DreamEditorActivity : BaseAppCompatActivity() {
         dream_text.setText(dream.properties.description)
     }
 
-    private fun handleSaveResult(result: SaveDreamResult) {
-        if (result == SaveDreamResult.SUCCESS) {
+    private fun handleSaveResult(result: SaveResult) {
+        if (result == SaveResult.SUCCESS) {
             return
         }
 
         buildAlert {
             titleResource = R.string.save_error_title
             messageResource = when (result) {
-                SaveDreamResult.SUCCESS -> throw IllegalStateException()
-                SaveDreamResult.ERROR_EMPTY_DREAM,
-                SaveDreamResult.ERROR_BLANK_DREAM -> R.string.save_error_empty
-                SaveDreamResult.ERROR_LARGE_DREAM -> R.string.save_error_large
-                SaveDreamResult.ERROR_NO_CONNECTION -> R.string.save_error_no_connection
-                SaveDreamResult.ERROR_UNDEFINED -> R.string.save_error_undefined
+                SaveResult.SUCCESS -> throw IllegalStateException()
+                SaveResult.ERROR_EMPTY_DREAM,
+                SaveResult.ERROR_BLANK_DREAM -> R.string.save_error_empty
+                SaveResult.ERROR_LARGE_DREAM -> R.string.save_error_large
+                SaveResult.ERROR_NO_CONNECTION -> R.string.save_error_no_connection
+                SaveResult.ERROR_UNDEFINED -> R.string.save_error_undefined
             }
             cancelButton { mViewModel.onCloseSaveResult() }
         } customizeAndShow {

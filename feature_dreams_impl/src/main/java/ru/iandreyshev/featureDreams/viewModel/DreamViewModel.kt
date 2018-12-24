@@ -28,7 +28,7 @@ class DreamViewModel
     val dream: LiveData<Dream>
         get() = mDreamViewModel
 
-    val deletingResultEvent: LiveData<DeleteDreamResult>
+    val deletingResultEvent: LiveData<DeleteResult>
         get() = mDeletingErrorEvent
     val loadingErrorEvent: LiveData<Unit>
         get() = mLoadingErrorEvent
@@ -38,7 +38,7 @@ class DreamViewModel
     private val mDeleteWaitingViewModel = WaitingViewModel()
     private val mDreamViewModel = mutableLiveDataOf<Dream>()
 
-    private val mDeletingErrorEvent = SingleLiveTypedEvent<DeleteDreamResult>()
+    private val mDeletingErrorEvent = SingleLiveTypedEvent<DeleteResult>()
     private val mLoadingErrorEvent = SingleLiveEvent()
     private val mUnknownErrorEvent = SingleLiveEvent()
 
@@ -51,7 +51,7 @@ class DreamViewModel
             mLoadingErrorEvent.call()
         } else {
             mDreamViewModel.value = dream
-            mLoadDreamSubscription = dreamsRepository.getDreamObservable(dream.key)
+            mLoadDreamSubscription = dreamsRepository.getDream(dream.key)
                     .subscribe(::handleLoadDreamResult, ::handleLoadDreamError)
         }
     }
@@ -87,12 +87,12 @@ class DreamViewModel
         error.printStackTrace()
     }
 
-    private fun handleDeleteResult(result: DeleteDreamResult) {
+    private fun handleDeleteResult(result: DeleteResult) {
         mDeletingErrorEvent.value = result
     }
 
     private fun handleDeleteError(error: Throwable) {
-        mDeletingErrorEvent.value = DeleteDreamResult.ERROR_UNDEFINED
+        mDeletingErrorEvent.value = DeleteResult.ERROR_UNDEFINED
         error.printStackTrace()
     }
 

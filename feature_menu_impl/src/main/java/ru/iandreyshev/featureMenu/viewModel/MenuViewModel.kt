@@ -30,7 +30,7 @@ class MenuViewModel
     private val mDreamsCountSubscription: Disposable
 
     init {
-        mDreamsCountSubscription = dreamsRepository.dreamsObservable
+        mDreamsCountSubscription = dreamsRepository.dreams
                 .map { it.isNotEmpty() }
                 .subscribe { mDreamsAvailability.value = it }
     }

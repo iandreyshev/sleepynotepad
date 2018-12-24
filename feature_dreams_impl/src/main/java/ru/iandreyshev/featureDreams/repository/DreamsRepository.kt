@@ -12,8 +12,8 @@ class DreamsRepository
         private val storage: IDreamsStorage
 ) : IDreamsRepository {
 
-    override val dreamsObservable: Observable<List<Dream>>
-        get() = storage.dreamObservable
+    override val dreams: Observable<List<Dream>>
+        get() = storage.dreams
                 .ioToMain()
                 .map { list ->
                     list.map { entity ->
@@ -23,7 +23,7 @@ class DreamsRepository
                     }
                 }
 
-    override fun getDreamObservable(key: DreamKey): Observable<LoadDreamResult> {
+    override fun getDream(key: DreamKey): Observable<LoadDreamResult> {
         return Observable.create {  }
     }
 

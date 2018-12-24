@@ -10,7 +10,7 @@ import ru.iandreyshev.coreui.viewModel.DialogViewModel
 import ru.iandreyshev.coreui.viewModel.SingleLiveEvent
 import ru.iandreyshev.coreui.viewModel.WaitingViewModel
 import ru.iandreyshev.featureDreamsApi.domain.DreamProperties
-import ru.iandreyshev.featureDreams.domain.SaveDreamResult
+import ru.iandreyshev.featureDreams.domain.SaveResult
 import ru.iandreyshev.featureDreams.ui.activity.DreamEditorActivity
 import ru.iandreyshev.featureDreams.useCase.ISaveDreamUseCase
 import ru.iandreyshev.featureDreamsApi.domain.Dream
@@ -23,7 +23,7 @@ class DreamEditorViewModel(
 
     val dream: LiveData<Dream>
         get() = mDreamViewModel
-    val saveResult: LiveData<SaveDreamResult>
+    val saveResult: LiveData<SaveResult>
         get() = mErrorViewModel.observable
     val saveWaiting: LiveData<Boolean>
         get() = mWaitingViewModel.observable
@@ -33,7 +33,7 @@ class DreamEditorViewModel(
     private var mDreamKey: DreamKey? = null
 
     private val mDreamViewModel = mutableLiveDataOf<Dream>()
-    private val mErrorViewModel = DialogViewModel<SaveDreamResult>()
+    private val mErrorViewModel = DialogViewModel<SaveResult>()
     private val mWaitingViewModel = WaitingViewModel()
     private val mCloseEvent = SingleLiveEvent()
 
@@ -62,8 +62,8 @@ class DreamEditorViewModel(
         mSaveDreamSubscription?.dispose()
     }
 
-    private fun handleSaveResult(result: SaveDreamResult) {
-        if (result == SaveDreamResult.SUCCESS) {
+    private fun handleSaveResult(result: SaveResult) {
+        if (result == SaveResult.SUCCESS) {
             mCloseEvent()
             return
         }
@@ -71,7 +71,7 @@ class DreamEditorViewModel(
     }
 
     private fun handleSaveError(error: Throwable) {
-        mErrorViewModel.update(SaveDreamResult.ERROR_UNDEFINED)
+        mErrorViewModel.update(SaveResult.ERROR_UNDEFINED)
         error.printStackTrace()
     }
 

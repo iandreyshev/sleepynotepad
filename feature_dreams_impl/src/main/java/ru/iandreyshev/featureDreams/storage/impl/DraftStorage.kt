@@ -8,7 +8,7 @@ import javax.inject.Inject
 class DraftStorage
 @Inject constructor(): IDraftStorage {
 
-    override val draftObservable: Observable<DraftStorageEntity>
+    override val draft: Observable<DraftStorageEntity>
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
     override fun save(draft: DraftStorageEntity) {

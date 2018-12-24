@@ -6,6 +6,6 @@ import ru.iandreyshev.featureDreamsApi.domain.DreamKey
 import ru.iandreyshev.featureDreamsApi.domain.LoadDreamResult
 
 interface IDreamsRepository {
-    val dreamsObservable: Observable<List<Dream>>
-    fun getDreamObservable(key: DreamKey): Observable<LoadDreamResult>
+    val dreams: Observable<List<Dream>>
+    fun getDream(key: DreamKey): Observable<LoadDreamResult>
 }

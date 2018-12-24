@@ -1,9 +1,9 @@
 package ru.iandreyshev.featureDreamsApi.api
 
-import ru.iandreyshev.featureDreamsApi.useCase.IClearDreamsStorageUseCase
+import ru.iandreyshev.featureDreamsApi.useCase.IClearDreamsUseCase
 
 interface IFeatureDreamsApi {
     val dreamsRepository: IDreamsRepository
-    val dreamsDiaryFragmentFactory: IDreamsDiaryFragmentFactory
-    val clearStorageUseCase: IClearDreamsStorageUseCase
+    val dreamsListFragmentFactory: IDreamsListFragmentFactory
+    val clearStorageUseCase: IClearDreamsUseCase
 }

@@ -9,10 +9,6 @@ android {
     defaultConfig {
         minSdkVersion min_sdk
         targetSdkVersion target_sdk
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -33,6 +29,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_compiller_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_android_processor_version"
 
+    // Material progress bar
     implementation 'me.zhanghai.android.materialprogressbar:library:1.1.7'
 
     // RxJava-ObjectBox

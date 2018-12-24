@@ -3,15 +3,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion target_sdk
+
     defaultConfig {
         applicationId "ru.iandreyshev.sleepynotepad"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName "0.0.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,8 +22,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':core_ui')
     implementation project(':core_utils')
     implementation project(':core_database')
@@ -32,6 +31,12 @@ dependencies {
 
     implementation project(':feature_menu_api')
     implementation project(':feature_menu_impl')
+
+    implementation project(':feature_alarm_api')
+    implementation project(':feature_alarm_impl')
+
+    implementation project(':feature_settings_api')
+    implementation project(':feature_settings_impl')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

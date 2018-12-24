@@ -4,11 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.Disposable
-import ru.iandreyshev.coreUtils.rx.ioToMain
-import ru.iandreyshev.coreUtils.rx.subscribe
 import ru.iandreyshev.coreui.viewModel.SingleLiveTypedEvent
 import ru.iandreyshev.featureDreams.domain.FetchDreamsResult
-import ru.iandreyshev.featureDreams.useCase.IFetchDreamsUseCase
 import ru.iandreyshev.featureDreamsApi.api.IDreamsRepository
 import ru.iandreyshev.featureDreamsApi.domain.Dream
 import ru.iandreyshev.vext.liveData.mutableLiveDataOf
@@ -16,8 +13,7 @@ import javax.inject.Inject
 
 class DreamListViewModel
 @Inject constructor(
-        repository: IDreamsRepository,
-        private val fetchDreamsUseCase: IFetchDreamsUseCase
+        repository: IDreamsRepository
 ) : ViewModel() {
 
     val dreams: LiveData<List<Dream>>
@@ -38,17 +34,8 @@ class DreamListViewModel
     private var mRefreshingSubscription: Disposable? = null
 
     init {
-        mDreamsSubscription = repository.dreamsObservable
+        mDreamsSubscription = repository.dreams
                 .subscribe { mDreams.value = it }
-    }
-
-    fun onRefresh() {
-        mRefreshingSubscription = fetchDreamsUseCase()
-                .ioToMain()
-                .doOnSubscribe { mRefreshing.value = true }
-                .subscribe(::handleResult, ::handleFetchError) {
-                    mRefreshing.value = false
-                }
     }
 
     fun onCloseDreamOptions() {
@@ -58,14 +45,6 @@ class DreamListViewModel
     override fun onCleared() {
         mDreamsSubscription.dispose()
         mRefreshingSubscription?.dispose()
-    }
-
-    private fun handleResult(result: FetchDreamsResult) {
-        mFetchResult.postValue(result)
-    }
-
-    private fun handleFetchError(throwable: Throwable) {
-        throwable.printStackTrace()
     }
 
 }
