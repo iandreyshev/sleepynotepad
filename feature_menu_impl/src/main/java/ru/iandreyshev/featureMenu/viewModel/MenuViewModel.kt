@@ -15,7 +15,8 @@ class MenuViewModel
 ) : ViewModel() {
 
     enum class MenuState {
-        DREAMS,
+        DREAMS_LIST,
+        ALARM,
         SETTINGS
     }
 
@@ -24,7 +25,7 @@ class MenuViewModel
     val dreamsAvailability: LiveData<Boolean>
         get() = mDreamsAvailability
 
-    private val mMenuState = mutableLiveDataOf(MenuState.DREAMS)
+    private val mMenuState = mutableLiveDataOf(MenuState.DREAMS_LIST)
     private val mDreamsAvailability = mutableLiveDataOf(false)
 
     private val mDreamsCountSubscription: Disposable

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/drawer_item_dreams"
+        android:id="@+id/bottom_item_dreams_list"
         android:icon="@drawable/ic_library_books_black_24dp"
         android:title="@string/drawer_menu_item_dreams" />
     <item
-        android:id="@+id/drawer_item_alarm"
+        android:id="@+id/bottom_item_alarm"
         android:icon="@drawable/ic_alarm_black_24dp"
         android:title="@string/drawer_menu_item_alarm" />
     <item
-        android:id="@+id/drawer_item_settings"
+        android:id="@+id/bottom_item_settings"
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/drawer_menu_item_settings" />
 </menu>

@@ -54,6 +54,7 @@ class DreamsListFragment : BaseFragment() {
         val isAvailable = dreams.isNotEmpty()
         list_refresher.visibleIfOrGone(isAvailable)
         empty_refresher.goneIfOrVisible(isAvailable)
+        btnAdd.visibleIfOrGone(isAvailable)
 
         mDreamsAdapter.dreams = dreams
         mDreamsAdapter.notifyDataSetChanged()

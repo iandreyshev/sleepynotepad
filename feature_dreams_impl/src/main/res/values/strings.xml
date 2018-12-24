@@ -5,7 +5,7 @@
     <string name="create_dream_toolbar_title">New dream</string>
 
     <string name="dreams_diary_empty_text">You have no dreams yet.\nMaybe you sleep…</string>
-    <string name="dreams_diary_save_first_button">Write first</string>
+    <string name="dreams_diary_add_first_button">Write first</string>
 
     <string name="dream_toolbar_edit">Edit</string>
     <string name="dream_toolbar_delete">Delete</string>

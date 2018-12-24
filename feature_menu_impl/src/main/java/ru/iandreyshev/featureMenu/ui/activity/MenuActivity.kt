@@ -2,6 +2,7 @@ package ru.iandreyshev.featureMenu.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import kotlinx.android.synthetic.main.activity_menu.*
 import ru.iandreyshev.coreui.ui.activity.BaseAppCompatActivity
 import ru.iandreyshev.coreui.viewModel.observeNotNull
 import ru.iandreyshev.featureAlarm.IAlarmFragmentFactory
@@ -10,6 +11,8 @@ import ru.iandreyshev.featureMenu.R
 import ru.iandreyshev.featureMenu.di.FeatureMenuComponent
 import ru.iandreyshev.featureMenu.viewModel.MenuViewModel
 import ru.iandreyshev.featureSettingsApi.ISettingsFragmentFactory
+import ru.iandreyshev.vext.view.gone
+import ru.iandreyshev.vext.view.visible
 import javax.inject.Inject
 
 class MenuActivity : BaseAppCompatActivity() {
@@ -36,40 +39,84 @@ class MenuActivity : BaseAppCompatActivity() {
 
         FeatureMenuComponent.get().inject(this)
 
+        initBottomNavigation()
         initDreamsListFragment()
         initAlarmFragment()
         initSettingsFragment()
 
         mViewModel.apply {
             observeNotNull(dreamsAvailability, ::handleDreamsAvailability)
+            observeNotNull(menuState, ::handleMenuState)
+        }
+    }
+
+    private fun initBottomNavigation() {
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.bottom_item_dreams_list -> {
+                    mViewModel.onNewMenuState(MenuViewModel.MenuState.DREAMS_LIST)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.bottom_item_alarm -> {
+                    mViewModel.onNewMenuState(MenuViewModel.MenuState.ALARM)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.bottom_item_settings -> {
+                    mViewModel.onNewMenuState(MenuViewModel.MenuState.SETTINGS)
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            return@setOnNavigationItemSelectedListener false
         }
     }
 
     private fun initDreamsListFragment() {
-        mDreamsListFragment ?: return
-        supportFragmentManager
+        mDreamsListFragment ?: run {
+            supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragment_dreams_list, mDreamsListFragmentFactory.create(), FRAGMENT_TAG_DREAMS_LIST)
+                .add(fragment_dreams_list.id, mDreamsListFragmentFactory.create(), FRAGMENT_TAG_DREAMS_LIST)
                 .commit()
+        }
     }
 
     private fun initAlarmFragment() {
-        mAlarmFragment ?: return
-        supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_alarm, mAlarmFragmentFactory.create(), FRAGMENT_TAG_ALARM)
+        mAlarmFragment ?: run {
+            supportFragmentManager
+                .beginTransaction()
+                .add(fragment_alarm.id, mAlarmFragmentFactory.create(), FRAGMENT_TAG_ALARM)
                 .commit()
+        }
     }
 
     private fun initSettingsFragment() {
-        mSettingsFragment ?: return
-        supportFragmentManager
+        mSettingsFragment ?: run {
+            supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragment_settings, mSettingsFragmentFactory.create(), FRAGMENT_TAG_SETTINGS)
+                .add(fragment_settings.id, mSettingsFragmentFactory.create(), FRAGMENT_TAG_SETTINGS)
                 .commit()
+        }
     }
 
     private fun handleDreamsAvailability(isAvailable: Boolean) {
         refreshActionBar()
+    }
+
+    private fun handleMenuState(menuState: MenuViewModel.MenuState) {
+        fragment_dreams_list.gone()
+        fragment_alarm.gone()
+        fragment_settings.gone()
+
+        return when (menuState) {
+            MenuViewModel.MenuState.DREAMS_LIST -> {
+                fragment_dreams_list.visible()
+            }
+            MenuViewModel.MenuState.ALARM -> {
+                fragment_alarm.visible()
+            }
+            MenuViewModel.MenuState.SETTINGS -> {
+                fragment_settings.visible()
+            }
+        }
     }
 
     private fun refreshActionBar() {
