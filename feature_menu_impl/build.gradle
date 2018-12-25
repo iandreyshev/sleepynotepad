@@ -25,7 +25,7 @@ dependencies {
     api project(':feature_menu_api')
     api project(':feature_dreams_api')
     api project(':feature_alarm_api')
-    api project(':feature_settings_api')
+    api project(':feature_statistic_api')
 
     // Dagger 2
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

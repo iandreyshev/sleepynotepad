@@ -16,8 +16,10 @@ import ru.iandreyshev.featureDreamsApi.domain.DreamProperties
 import ru.iandreyshev.featureDreams.viewModel.DreamEditorViewModel
 import ru.iandreyshev.featureDreams.viewModel.IViewModelFactory
 import ru.iandreyshev.featureDreamsApi.domain.Dream
+import ru.iandreyshev.featureDreamsApi.domain.SleepingDate
 import ru.iandreyshev.vext.view.visibleIfOrGone
 import java.lang.IllegalStateException
+import java.sql.Time
 import javax.inject.Inject
 
 class DreamEditorActivity : BaseAppCompatActivity() {
@@ -101,7 +103,10 @@ class DreamEditorActivity : BaseAppCompatActivity() {
 
     private fun createDream(): DreamProperties {
         return DreamProperties(
-                description = dream_text.text.toString()
+                title = dream_title.text.toString(),
+                description = dream_text.text.toString(),
+                sleepingDate = SleepingDate(System.currentTimeMillis()),
+                isLucid = dream_is_lucid.isChecked
         )
     }
 

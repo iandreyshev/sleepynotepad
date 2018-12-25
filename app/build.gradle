@@ -35,8 +35,8 @@ dependencies {
     implementation project(':feature_alarm_api')
     implementation project(':feature_alarm_impl')
 
-    implementation project(':feature_settings_api')
-    implementation project(':feature_settings_impl')
+    implementation project(':feature_statistic_api')
+    implementation project(':feature_statistic_impl')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

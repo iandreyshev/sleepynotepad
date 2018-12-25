@@ -10,8 +10,9 @@ import ru.iandreyshev.featureDreamsApi.domain.SleepingDate
 data class DreamEntity(
         @Id(assignable = true)
         var id: Long = 0,
-        @Convert(converter = SleepingDateConverter::class, dbType = Long::class)
-        var date: SleepingDate? = null,
+        var title: String? = null,
         var description: String = "",
+        @Convert(converter = SleepingDateConverter::class, dbType = Long::class)
+        var date: SleepingDate = SleepingDate(System.currentTimeMillis()),
         var isLucid: Boolean = false
 )

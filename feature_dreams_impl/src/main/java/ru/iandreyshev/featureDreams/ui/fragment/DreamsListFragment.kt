@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_dreams_list.*
 import kotlinx.android.synthetic.main.view_dream_diary_item.view.*
 import org.jetbrains.anko.support.v4.intentFor
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import ru.iandreyshev.featureDreams.R
 import ru.iandreyshev.featureDreams.di.FeatureDreamsComponent
@@ -18,6 +19,7 @@ import ru.iandreyshev.coreui.ui.dialog.customizeAndShow
 import ru.iandreyshev.coreui.ui.fragment.BaseFragment
 import ru.iandreyshev.coreui.viewModel.observeNotNull
 import ru.iandreyshev.featureDreams.domain.FetchDreamsResult
+import ru.iandreyshev.featureDreams.ui.activity.DreamEditorActivity
 import ru.iandreyshev.featureDreams.viewModel.DreamListViewModel
 import ru.iandreyshev.featureDreamsApi.domain.Dream
 import ru.iandreyshev.vext.view.goneIfOrVisible
@@ -37,10 +39,11 @@ class DreamsListFragment : BaseFragment() {
         FeatureDreamsComponent.get().inject(this)
 
         initDreamsList()
+        initAddFirstButton()
+        initAddButton()
 
         mViewModel.apply {
             observeNotNull(dreams, ::handleDreams)
-            observeNotNull(refreshing, ::handleRefreshing)
             observeNotNull(optionsTarget, ::handleOptionsTarget)
             observeNotNull(fetchResult, ::handleFetchResult)
         }
@@ -50,19 +53,26 @@ class DreamsListFragment : BaseFragment() {
         dreamsList.adapter = mDreamsAdapter
     }
 
+    private fun initAddFirstButton() {
+        btnAddFirst.setOnClickListener {
+            startActivity<DreamEditorActivity>()
+        }
+    }
+
+    private fun initAddButton() {
+        btnAdd.setOnClickListener {
+            startActivity<DreamEditorActivity>()
+        }
+    }
+
     private fun handleDreams(dreams: List<Dream>) {
         val isAvailable = dreams.isNotEmpty()
-        list_refresher.visibleIfOrGone(isAvailable)
-        empty_refresher.goneIfOrVisible(isAvailable)
         btnAdd.visibleIfOrGone(isAvailable)
+        emptyView.goneIfOrVisible(isAvailable)
+        dreamsList.visibleIfOrGone(isAvailable)
 
         mDreamsAdapter.dreams = dreams
         mDreamsAdapter.notifyDataSetChanged()
-    }
-
-    private fun handleRefreshing(isRefresh: Boolean) {
-        list_refresher.isRefreshing = isRefresh
-        empty_refresher.isRefreshing = isRefresh
     }
 
     private fun handleOptionsTarget(target: Dream) {

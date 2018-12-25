@@ -22,7 +22,7 @@ android {
 dependencies {
     api project(':core_ui')
     api project(':core_utils')
-    api project(':feature_settings_api')
+    api project(':feature_statistic_api')
 
     // Kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

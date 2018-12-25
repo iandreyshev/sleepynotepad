@@ -17,8 +17,13 @@ class DreamsRepository
                 .ioToMain()
                 .map { list ->
                     list.map { entity ->
-                        val properties = DreamProperties(entity.description)
                         val key = DreamKey(entity.id)
+                        val properties = DreamProperties(
+                                title = entity.title,
+                                description = entity.description,
+                                sleepingDate = entity.date,
+                                isLucid = entity.isLucid
+                        )
                         Dream(key, properties)
                     }
                 }

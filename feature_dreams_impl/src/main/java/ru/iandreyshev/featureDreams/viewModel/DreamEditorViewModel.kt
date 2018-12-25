@@ -46,6 +46,10 @@ class DreamEditorViewModel(
     }
 
     fun saveDream(dream: DreamProperties) {
+        if (mWaitingViewModel.isWait) {
+            return
+        }
+
         mWaitingViewModel.start()
         mSaveDreamSubscription = saveDreamUseCase(dream, mDreamKey)
                 .ioToMain()

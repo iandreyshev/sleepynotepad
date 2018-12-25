@@ -8,7 +8,6 @@ import ru.iandreyshev.coreui.viewModel.SingleLiveTypedEvent
 import ru.iandreyshev.featureDreams.domain.FetchDreamsResult
 import ru.iandreyshev.featureDreamsApi.api.IDreamsRepository
 import ru.iandreyshev.featureDreamsApi.domain.Dream
-import ru.iandreyshev.vext.liveData.mutableLiveDataOf
 import javax.inject.Inject
 
 class DreamListViewModel
@@ -18,15 +17,12 @@ class DreamListViewModel
 
     val dreams: LiveData<List<Dream>>
         get() = mDreams
-    val refreshing: LiveData<Boolean>
-        get() = mRefreshing
     val optionsTarget: LiveData<Dream>
         get() = mOptionsTarget
     val fetchResult: LiveData<FetchDreamsResult>
         get() = mFetchResult
 
     private val mDreams = MutableLiveData<List<Dream>>()
-    private val mRefreshing = mutableLiveDataOf(false)
     private val mOptionsTarget = MutableLiveData<Dream>()
     private val mFetchResult = SingleLiveTypedEvent<FetchDreamsResult>()
 

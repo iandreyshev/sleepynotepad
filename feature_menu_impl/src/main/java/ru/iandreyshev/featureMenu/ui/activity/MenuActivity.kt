@@ -61,7 +61,7 @@ class MenuActivity : BaseAppCompatActivity() {
                     mViewModel.onNewMenuState(MenuViewModel.MenuState.ALARM)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.bottom_item_settings -> {
+                R.id.bottom_item_stats -> {
                     mViewModel.onNewMenuState(MenuViewModel.MenuState.SETTINGS)
                     return@setOnNavigationItemSelectedListener true
                 }
