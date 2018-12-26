@@ -15,11 +15,11 @@ class DreamsListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DreamListViewHolder =
             LayoutInflater.from(parent.context)
-                    .inflate(R.layout.view_dream_diary_item, parent, false)
+                    .inflate(R.layout.view_dreams_list_item, parent, false)
                     .let { DreamListViewHolder(it) }
 
     override fun onBindViewHolder(viewHolder: DreamListViewHolder, position: Int) {
-        viewHolder.setItem(dreams[position])
+        viewHolder.bindItem(dreams[position])
                 .onClick { view, item -> actionListener?.onClick(view, item) }
                 .onLongClick { actionListener?.onLongClick(it) ?: false }
     }

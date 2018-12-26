@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_dreams_list.*
-import kotlinx.android.synthetic.main.view_dream_diary_item.view.*
+import kotlinx.android.synthetic.main.view_dream_teaser.view.*
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast

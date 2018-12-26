@@ -11,10 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:reverseLayout="true"
         app:stackFromEnd="true"
-        tools:listitem="@layout/view_dream_diary_item" />
+        tools:listitem="@layout/view_dreams_list_item" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/emptyView"
