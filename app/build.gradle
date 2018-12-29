@@ -38,6 +38,9 @@ dependencies {
     implementation project(':feature_statistic_api')
     implementation project(':feature_statistic_impl')
 
+    implementation project(':feature_audio_api')
+    implementation project(':feature_audio_impl')
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

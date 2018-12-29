@@ -1,1 +1,15 @@
-include ':app', ':core_utils', ':core_ui', ':core_database', ':feature_dreams_api', ':feature_dreams_impl', ':feature_alarm_api', ':feature_alarm_impl', ':feature_statistic_api', ':feature_statistic_impl', 'feature_menu_api', 'feature_menu_impl'
+include(':app',
+        ':core_utils',
+        ':core_ui',
+        ':core_database',
+        ':feature_dreams_api',
+        ':feature_dreams_impl',
+        ':feature_alarm_api',
+        ':feature_alarm_impl',
+        ':feature_statistic_api',
+        ':feature_statistic_impl',
+        'feature_menu_api',
+        'feature_menu_impl',
+        ':feature_audio_impl',
+        ':feature_audio_api'
+)
