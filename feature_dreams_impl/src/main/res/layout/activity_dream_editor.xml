@@ -96,12 +96,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/dream_title" />
 
             <TextView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:gravity="top|end"
+                android:paddingLeft="18dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="18dp"
+                android:text="Sleeping date"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/dream_is_lucid"
+                app:layout_constraintEnd_toStartOf="@+id/dream_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dream_text"
+                app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
+            <TextView
                 android:id="@+id/dream_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@color/ui_kit_toolbar_light"
-                android:gravity="top|left"
+                android:gravity="top|end"
                 android:paddingTop="18dp"
                 android:paddingRight="18dp"
                 android:paddingBottom="18dp"
@@ -111,11 +129,16 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/dream_text" />
 
-            <Switch
+            <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/dream_is_lucid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="18dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="14dp"
+                android:checked="false"
+                android:layoutDirection="rtl"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
                 android:text="Lucid"
                 android:textColor="?attr/actionModeSplitBackground"
                 android:textSize="16sp"
@@ -123,20 +146,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dream_date"
                 tools:checked="true" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:adjustViewBounds="true"
-                app:layout_constraintBottom_toTopOf="@+id/dream_is_lucid"
-                app:layout_constraintEnd_toStartOf="@+id/dream_date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dream_date"
-                app:srcCompat="@drawable/ic_access_time_black_24dp" />
 
         </android.support.constraint.ConstraintLayout>
 
