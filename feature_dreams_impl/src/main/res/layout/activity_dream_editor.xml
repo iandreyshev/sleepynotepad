@@ -81,53 +81,122 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/dream_text"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/group_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/ui_kit_toolbar_light"
-                android:gravity="top|left"
-                android:hint="What's you see?"
-                android:inputType="textMultiLine"
+                android:paddingBottom="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dream_title">
+
+                <EditText
+                    android:id="@+id/tvDreamText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ui_kit_toolbar_light"
+                    android:gravity="top|left"
+                    android:hint="What's you see?"
+                    android:inputType="textMultiLine"
+                    android:paddingStart="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingEnd="18dp"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvTextCharactersLeft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:text="Осталось N символов"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDreamText" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/group_voice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:padding="18dp"
-                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dream_title" />
+                app:layout_constraintTop_toBottomOf="@+id/group_text">
 
-            <TextView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Record voice"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_mic_black_24dp" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/group_date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:gravity="top|end"
-                android:paddingLeft="18dp"
-                android:paddingTop="18dp"
-                android:paddingEnd="18dp"
-                android:paddingBottom="18dp"
-                android:text="Sleeping date"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/dream_is_lucid"
-                app:layout_constraintEnd_toStartOf="@+id/dream_date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dream_text"
-                app:srcCompat="@drawable/ic_access_time_black_24dp" />
-
-            <TextView
-                android:id="@+id/dream_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@color/ui_kit_toolbar_light"
-                android:gravity="top|end"
-                android:paddingTop="18dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="18dp"
-                android:text="Today"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/dream_text" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_voice">
+
+                <TextView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:gravity="top|end"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp"
+                    android:text="Sleeping date"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/dream_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
+                <TextView
+                    android:id="@+id/dream_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/ui_kit_toolbar_light"
+                    android:gravity="top|end"
+                    android:paddingTop="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="18dp"
+                    android:text="Today"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/dream_is_lucid"
@@ -140,11 +209,12 @@
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp"
                 android:text="Lucid"
-                android:textColor="?attr/actionModeSplitBackground"
+                android:textColor="#808080"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dream_date"
+                app:layout_constraintTop_toBottomOf="@+id/group_date"
                 tools:checked="true" />
 
         </android.support.constraint.ConstraintLayout>

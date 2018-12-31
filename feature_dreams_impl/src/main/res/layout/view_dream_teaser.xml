@@ -12,13 +12,13 @@
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
-        android:background="@color/colorAccent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:text="Lucid dream"
         android:textSize="14sp"
         android:transitionName="trans_key_dream_date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -26,8 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:maxLines="3"
-        android:background="@color/colorPrimary"
+        android:maxLines="2"
         android:textSize="24sp"
         android:textStyle="bold"
         android:transitionName="trans_key_dream_description"
@@ -41,8 +40,7 @@
         android:id="@+id/tvTextTeaserSecondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:background="@color/colorPrimaryDark"
+        android:maxLines="4"
         android:textSize="18sp"
         android:transitionName="trans_key_dream_description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,5 +58,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTextTeaserSecondary" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvDescription"
+        app:srcCompat="@drawable/ic_flash_on_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>

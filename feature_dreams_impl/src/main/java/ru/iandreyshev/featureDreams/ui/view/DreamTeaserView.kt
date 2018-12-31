@@ -20,11 +20,6 @@ class DreamTeaserView
         inflate(context, R.layout.view_dream_teaser, this)
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        measureTeaserLines()
-    }
-
     private fun measureTeaserLines() {
         val isMainTeaserExists = tvTextTeaserMain.text.isNotEmpty()
 

@@ -19,7 +19,6 @@ import ru.iandreyshev.featureDreamsApi.domain.Dream
 import ru.iandreyshev.featureDreamsApi.domain.SleepingDate
 import ru.iandreyshev.vext.view.visibleIfOrGone
 import java.lang.IllegalStateException
-import java.sql.Time
 import javax.inject.Inject
 
 class DreamEditorActivity : BaseAppCompatActivity() {
@@ -72,7 +71,7 @@ class DreamEditorActivity : BaseAppCompatActivity() {
     }
 
     private fun handleDream(dream: Dream) {
-        dream_text.setText(dream.properties.description)
+        tvDreamText.setText(dream.properties.description)
     }
 
     private fun handleSaveResult(result: SaveResult) {
@@ -104,7 +103,7 @@ class DreamEditorActivity : BaseAppCompatActivity() {
     private fun createDream(): DreamProperties {
         return DreamProperties(
                 title = dream_title.text.toString(),
-                description = dream_text.text.toString(),
+                description = tvDreamText.text.toString(),
                 sleepingDate = SleepingDate(System.currentTimeMillis()),
                 isLucid = dream_is_lucid.isChecked
         )
